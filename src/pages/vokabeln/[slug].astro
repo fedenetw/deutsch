@@ -22,7 +22,7 @@ const { Content } = await render(vocab);
 
 <BaseLayout title={vocab.data.word}>
   <div class="study-page">
-    <a class="back-link" href="/vokabeln/">
+    <a class="back-link" href={`${import.meta.env.BASE_URL}vokabeln/`}>
       ← Vokabeln
     </a>
 

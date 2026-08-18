@@ -61,7 +61,7 @@
   let index: any[] = [];
 
   async function loadIndex() {
-    const response = await fetch('/api/search-index.json');
+    const response = await fetch(`${import.meta.env.BASE_URL}api/search-index.json/$`);
 
     if (!response.ok) {
       throw new Error('Impossibile caricare l’indice di ricerca');
