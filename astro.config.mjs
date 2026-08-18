@@ -1,8 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-// https://astro.build/config
 export default defineConfig({
-    site: 'https://fedenetw.github.io',
-    base: '/',
+  site: 'https://fedenetw.github.io/deutsch',
+  base: '/deutsch',
 });

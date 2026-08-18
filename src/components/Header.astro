@@ -4,13 +4,13 @@ import Search from './Search.astro';
 
 <header class="site-header">
   <nav class="site-nav" aria-label="Navigazione principale">
-    <a class="site-title" href="/">Startseite</a>
+    <a class="site-title" href={import.meta.env.BASE_URL}>Startseite</a>
 
     <div class="nav-links">
-      <a href="/verben/">Verben</a>
-      <a href="/vokabeln/">Vokabeln</a>
-      <a href="/grammatik/">Grammatik</a>
-      <a href="/ueben/">Üben</a>
+      <a href={`${import.meta.env.BASE_URL}verben/`}>Verben</a>
+      <a href={`${import.meta.env.BASE_URL}vokabeln/`}>Vokabeln</a>
+      <a href={`${import.meta.env.BASE_URL}grammatik/`}>Grammatik</a>
+      <a href={`${import.meta.env.BASE_URL}ueben/`}>Üben</a>
     </div>
 
     <Search />
