@@ -23,10 +23,7 @@ grammatik.sort((a, b) =>
 
     <div class="grammar-list">
       {grammatik.map((grammar) => (
-        <a
-          class="grammar-list-item"
-          href={`${import.meta.env.BASE_URL}vokabeln/${grammar.id}/`}
-        >
+        <a class="grammar-list-item" href={`${import.meta.env.BASE_URL}grammatik/${grammar.id}/`}>
           <div>
             <h2>{grammar.data.title}</h2>
 
