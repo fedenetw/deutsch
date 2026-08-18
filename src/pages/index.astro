@@ -19,22 +19,22 @@ import Search from '../components/Search.astro';
     </header>
 
     <nav class="home-sections" aria-label="Sezioni">
-      <a class="section-card" href="/verben/">
+      <a class="section-card" href={`${import.meta.env.BASE_URL}verben/`}>
         <h2>Verben</h2>
         <p>Verbi tedeschi e loro forme.</p>
       </a>
 
-      <a class="section-card" href="/vokabeln/">
+      <a class="section-card" href={`${import.meta.env.BASE_URL}vokabeln/`}>
         <h2>Vokabeln</h2>
         <p>Parole, significati e vocabolario.</p>
       </a>
 
-      <a class="section-card" href="/grammatik/">
+      <a class="section-card" href={`${import.meta.env.BASE_URL}grammatik/`}>
         <h2>Grammatik</h2>
         <p>Regole, casi, articoli e strutture.</p>
       </a>
 
-      <a class="section-card" href="/ueben/">
+      <a class="section-card" href={`${import.meta.env.BASE_URL}ueben/`}>
         <h2>Üben</h2>
         <p>Esercizi per consolidare l'apprendimento.</p>
       </a>
