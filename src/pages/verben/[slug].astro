@@ -22,7 +22,7 @@ const { Content } = await render(verb);
 
 <BaseLayout title={verb.data.lemma}>
   <main class="study-page">
-    <a class="back-link" href="/verben/">
+    <a class="back-link" href="`${import.meta.env.BASE_URL}verben/`">
       ← Verben
     </a>
 
