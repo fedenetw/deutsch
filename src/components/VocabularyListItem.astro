@@ -1,0 +1,51 @@
+---
+interface Props {
+  slug: string;
+  word: string;
+  translation: string;
+  article?: 'der' | 'die' | 'das';
+  plural?: string;
+  category?: string;
+  level?: string;
+  type?: string;
+}
+
+const {
+  slug,
+  word,
+  translation,
+  article,
+  plural,
+  category,
+  level,
+  type,
+} = Astro.props;
+---
+
+<a
+  class="vocabulary-list-item"
+  href={`/vokabeln/${slug}/`}
+  data-filter-item
+  data-level={level ?? ''}
+  data-type={type ?? ''}
+  data-article={article ?? ''}
+>
+  <div>
+    <h2>
+      {article && (
+        <span class={`article-${article}`}>
+          {article}
+        </span>
+      )}
+      {article ? ' ' : ''}
+      {word}
+    </h2>
+
+    <p>{translation}</p>
+  </div>
+
+  <div class="vocabulary-meta">
+    {plural && <span>Plural: {plural}</span>}
+    {level && <span>{level}</span>}
+  </div>
+</a>

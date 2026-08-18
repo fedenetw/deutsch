@@ -1,0 +1,47 @@
+---
+interface Props {
+  lemma: string;
+  translation: string;
+  preterite?: string;
+  participle?: string;
+  auxiliary?: 'haben' | 'sein';
+}
+
+const {
+  lemma,
+  translation,
+  preterite,
+  participle,
+  auxiliary,
+} = Astro.props;
+---
+
+<header class="verb-header">
+  <h1>{lemma}</h1>
+  <p class="translation">{translation}</p>
+</header>
+
+<section class="verb-forms" aria-label="Forme principali">
+  <dl>
+    {preterite && (
+      <div>
+        <dt>Präteritum</dt>
+        <dd>{preterite}</dd>
+      </div>
+    )}
+
+    {participle && (
+      <div>
+        <dt>Partizip II</dt>
+        <dd>{participle}</dd>
+      </div>
+    )}
+
+    {auxiliary && (
+      <div>
+        <dt>Hilfsverb</dt>
+        <dd>{auxiliary}</dd>
+      </div>
+    )}
+  </dl>
+</section>

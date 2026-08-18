@@ -1,0 +1,42 @@
+---
+interface Props {
+  word: string;
+  translation: string;
+  article?: 'der' | 'die' | 'das';
+  plural?: string;
+}
+
+const {
+  word,
+  translation,
+  article,
+  plural,
+} = Astro.props;
+---
+
+<header class="vocabulary-header">
+  <h1>
+    {article && (
+      <span class={`article-${article}`}>
+        {article}
+      </span>
+    )}
+    {article ? ' ' : ''}
+    {word}
+  </h1>
+
+  <p class="translation">{translation}</p>
+</header>
+
+{plural && (
+  <section class="vocabulary-info">
+    <dl>
+      <div>
+        <dt>Plural</dt>
+        <dd>
+          <span class="article-die">die</span> {plural}
+        </dd>
+      </div>
+    </dl>
+  </section>
+)}

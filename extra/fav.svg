@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="32.00354"
+   height="32"
+   viewBox="0 0 32.00354 32"
+   sodipodi:docname="old-favicon.ico"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1">
+    <inkscape:page
+       x="0"
+       y="0"
+       width="32.00354"
+       height="32"
+       id="page2"
+       margin="0"
+       bleed="0" />
+  </sodipodi:namedview>
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g1"
+     transform="translate(-1.8310547e-4)">
+    <rect
+       style="fill:#000000;fill-opacity:0.898039;stroke-width:1.66201"
+       id="rect1"
+       width="32.00354"
+       height="32"
+       x="0.00018310547"
+       y="0"
+       ry="4.6783624" />
+    <text
+       xml:space="preserve"
+       style="font-size:17.3215px;line-height:1.7;font-family:Verdana;-inkscape-font-specification:Verdana;letter-spacing:-0.167029px;word-spacing:2.22705px;writing-mode:lr-tb;direction:ltr;fill:#000000;fill-opacity:0.898039;stroke-width:0.77333"
+       x="4.5894132"
+       y="21.734364"
+       id="text1"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         x="4.5894132"
+         y="21.734364"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, ';fill:#ffffff;stroke-width:0.77333">DE</tspan></text>
+    <circle
+       style="fill:#d40000;fill-opacity:0.898039;stroke-width:1.66677"
+       id="path1"
+       cx="20.268988"
+       cy="8.8429193"
+       r="1.016466" />
+    <circle
+       style="fill:#d40000;fill-opacity:0.898039;stroke-width:1.66677"
+       id="path1-8"
+       cx="23.792324"
+       cy="8.8429193"
+       r="1.016466" />
+  </g>
+</svg>

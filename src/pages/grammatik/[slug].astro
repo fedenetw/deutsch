@@ -1,0 +1,42 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const grammatik = await getCollection('grammatik');
+
+  return grammatik.map((grammar) => ({
+    params: {
+      slug: grammar.id,
+    },
+    props: {
+      grammar,
+    },
+  }));
+}
+
+const { grammar } = Astro.props;
+const { Content } = await render(grammar);
+---
+
+<BaseLayout title={grammar.data.title}>
+  <div class="grammar-page">
+    <a class="back-link" href="/grammatik/">
+      ← Grammatik
+    </a>
+
+    <header class="grammar-header">
+      <h1>{grammar.data.title}</h1>
+
+      {grammar.data.level && (
+        <p class="grammar-level">
+          {grammar.data.level}
+        </p>
+      )}
+    </header>
+
+    <div class="content">
+      <Content />
+    </div>
+  </div>
+</BaseLayout>

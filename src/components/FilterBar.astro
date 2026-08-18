@@ -1,0 +1,158 @@
+---
+interface Filter {
+  name: string;
+  label: string;
+  options: {
+    value: string;
+    label: string;
+  }[];
+}
+
+interface Props {
+  filters: Filter[];
+}
+
+const { filters } = Astro.props;
+---
+
+<div class="filter-bar" data-filter-bar>
+  {filters.map((filter) => (
+    <label>
+      <span>{filter.label}</span>
+
+      <select
+        data-filter-select={filter.name}
+        aria-label={filter.label}
+      >
+        <option value="">Tutti</option>
+
+        {filter.options.map((option) => (
+          <option value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </label>
+  ))}
+
+  <button
+    type="button"
+    class="filter-reset"
+    data-filter-reset
+    aria-label="Filtri"
+    title="Rimuovi filtri"
+    hidden
+  >
+    ×
+  </button>
+</div>
+
+<script>
+  const filterBar = document.querySelector('[data-filter-bar]');
+
+  if (filterBar) {
+    const selects =
+      filterBar.querySelectorAll('select');
+
+    const resetButton =
+      filterBar.querySelector('[data-filter-reset]');
+
+    const storageKey =
+      `filters-${window.location.pathname}`;
+
+    function applyFilters() {
+      const items =
+        document.querySelectorAll('[data-filter-item]');
+
+      items.forEach((item) => {
+        const element = item as HTMLElement;
+
+        let matches = true;
+
+        selects.forEach((select) => {
+          const selectedValue = select.value;
+
+          if (!selectedValue) return;
+
+          const filterName =
+            select.getAttribute('data-filter-select');
+
+          const itemValue =
+            element.getAttribute(`data-${filterName}`);
+
+          if (itemValue !== selectedValue) {
+            matches = false;
+          }
+        });
+
+        element.hidden = !matches;
+      });
+
+      const hasFilter = Array.from(selects).some(
+        (select) => select.value !== ''
+      );
+
+      if (resetButton) {
+        const button = resetButton as HTMLButtonElement;
+        button.hidden = !hasFilter;
+      }
+    }
+
+    function saveFilters() {
+      const filters: Record<string, string> = {};
+
+      selects.forEach((select) => {
+        const name =
+          select.getAttribute('data-filter-select');
+
+        if (name) {
+          filters[name] = select.value;
+        }
+      });
+
+      localStorage.setItem(
+        storageKey,
+        JSON.stringify(filters)
+      );
+    }
+
+    function loadFilters() {
+      const saved =
+        localStorage.getItem(storageKey);
+
+      if (!saved) return;
+
+      const filters =
+        JSON.parse(saved) as Record<string, string>;
+
+      selects.forEach((select) => {
+        const name =
+          select.getAttribute('data-filter-select');
+
+        if (name && filters[name] !== undefined) {
+          select.value = filters[name];
+        }
+      });
+    }
+
+    selects.forEach((select) => {
+      select.addEventListener('change', () => {
+        saveFilters();
+        applyFilters();
+      });
+    });
+
+    resetButton?.addEventListener('click', () => {
+      selects.forEach((select) => {
+        select.value = '';
+      });
+
+      localStorage.removeItem(storageKey);
+
+      applyFilters();
+    });
+
+    loadFilters();
+    applyFilters();
+  }
+</script>

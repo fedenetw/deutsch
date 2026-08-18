@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Search from '../components/Search.astro';
+---
+
+<BaseLayout
+  title="Deutsch"
+  description="Materiale per lo studio del tedesco."
+>
+  <section class="home">
+    <header class="home-header">
+      <p class="eyebrow">Deutsch lernen</p>
+
+      <h1>Deutsch</h1>
+
+      <p class="intro">
+        Hallo! Was möchtest du lernen?
+      </p>
+    </header>
+
+    <nav class="home-sections" aria-label="Sezioni">
+      <a class="section-card" href="/verben/">
+        <h2>Verben</h2>
+        <p>Verbi tedeschi e loro forme.</p>
+      </a>
+
+      <a class="section-card" href="/vokabeln/">
+        <h2>Vokabeln</h2>
+        <p>Parole, significati e vocabolario.</p>
+      </a>
+
+      <a class="section-card" href="/grammatik/">
+        <h2>Grammatik</h2>
+        <p>Regole, casi, articoli e strutture.</p>
+      </a>
+
+      <a class="section-card" href="/ueben/">
+        <h2>Üben</h2>
+        <p>Esercizi per consolidare l'apprendimento.</p>
+      </a>
+    </nav>
+  </section>
+</BaseLayout>

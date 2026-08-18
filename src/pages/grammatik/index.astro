@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const grammatik = await getCollection('grammatik');
+
+grammatik.sort((a, b) =>
+  a.data.order - b.data.order
+);
+---
+
+<BaseLayout title="Grammatik">
+  <div class="list-page">
+    <header class="list-header">
+      <a class="back-link" href="/">← Deutsch</a>
+
+      <h1>Grammatik</h1>
+
+      <p>
+        Regole e strutture della lingua tedesca.
+      </p>
+    </header>
+
+    <div class="grammar-list">
+      {grammatik.map((grammar) => (
+        <a
+          class="grammar-list-item"
+          href={`/grammatik/${grammar.id}/`}
+        >
+          <div>
+            <h2>{grammar.data.title}</h2>
+
+            {grammar.data.category && (
+              <p>{grammar.data.category}</p>
+            )}
+          </div>
+
+          {grammar.data.level && (
+            <span>{grammar.data.level}</span>
+          )}
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

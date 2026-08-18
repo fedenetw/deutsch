@@ -1,0 +1,41 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import VerbCard from '../../components/VerbCard.astro';
+
+export async function getStaticPaths() {
+  const verben = await getCollection('verben');
+
+  return verben.map((verb) => ({
+    params: {
+      slug: verb.id,
+    },
+    props: {
+      verb,
+    },
+  }));
+}
+
+const { verb } = Astro.props;
+const { Content } = await render(verb);
+---
+
+<BaseLayout title={verb.data.lemma}>
+  <main class="study-page">
+    <a class="back-link" href="/verben/">
+      ← Verben
+    </a>
+
+    <VerbCard
+      lemma={verb.data.lemma}
+      translation={verb.data.translation}
+      preterite={verb.data.preterite}
+      participle={verb.data.participle}
+      auxiliary={verb.data.auxiliary}
+    />
+
+    <div class="content">
+      <Content />
+    </div>
+  </main>
+</BaseLayout>

@@ -1,0 +1,40 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import VocabularyCard from '../../components/VocabularyCard.astro';
+
+export async function getStaticPaths() {
+  const vokabeln = await getCollection('vokabeln');
+
+  return vokabeln.map((vocab) => ({
+    params: {
+      slug: vocab.id,
+    },
+    props: {
+      vocab,
+    },
+  }));
+}
+
+const { vocab } = Astro.props;
+const { Content } = await render(vocab);
+---
+
+<BaseLayout title={vocab.data.word}>
+  <div class="study-page">
+    <a class="back-link" href="/vokabeln/">
+      ← Vokabeln
+    </a>
+
+    <VocabularyCard
+      word={vocab.data.word}
+      translation={vocab.data.translation}
+      article={vocab.data.article}
+      plural={vocab.data.plural}
+    />
+
+    <div class="content">
+      <Content />
+    </div>
+  </div>
+</BaseLayout>

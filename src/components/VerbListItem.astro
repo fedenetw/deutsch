@@ -1,0 +1,42 @@
+---
+interface Props {
+  slug: string;
+  lemma: string;
+  translation: string;
+  type?: string;
+  level?: string;
+  separable?: boolean;
+  reflexive?: boolean;
+}
+
+const {
+  slug,
+  lemma,
+  translation,
+  type,
+  level,
+  separable,
+  reflexive,
+} = Astro.props;
+---
+
+<a
+  class="verb-list-item"
+  href={`/verben/${slug}/`}
+  data-filter-item
+  data-level={level ?? ''}
+  data-type={type ?? ''}
+  data-separable={separable ? 'true' : 'false'}
+  data-reflexive={reflexive ? 'true' : 'false'}
+>
+  
+  <div>
+    <h2>{lemma}</h2>
+    <p>{translation}</p>
+  </div>
+
+  <div class="verb-meta">
+    {type === 'irregular' && <span>unregelmäßig</span>}
+    {level && <span>{level}</span>}
+  </div>
+</a>

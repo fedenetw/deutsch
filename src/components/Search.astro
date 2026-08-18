@@ -1,0 +1,285 @@
+---
+---
+
+<div class="search">
+  <button
+    class="search-button"
+    type="button"
+    aria-label="Cerca"
+    aria-expanded="false"
+    aria-controls="search-panel"
+  >
+    <span class="search-icon" aria-hidden="true"></span>
+  </button>
+
+  <div id="search-panel" class="search-panel" hidden>
+    <div class="search-input-wrapper">
+      <input
+        id="site-search"
+        type="search"
+        placeholder="Cerca..."
+        autocomplete="off"
+      />
+
+      <button
+        class="search-close"
+        type="button"
+        aria-label="Chiudi ricerca"
+      >
+        ×
+      </button>
+    </div>
+
+    <div id="search-results" class="search-results"></div>
+  </div>
+</div>
+
+<script>
+  const search = document.querySelector<HTMLElement>('.search');
+  const searchButton =
+    document.querySelector<HTMLButtonElement>('.search-button');
+  const searchPanel =
+    document.querySelector<HTMLDivElement>('#search-panel');
+  const searchClose =
+    document.querySelector<HTMLButtonElement>('.search-close');
+  const input =
+    document.querySelector<HTMLInputElement>('#site-search');
+  const results =
+    document.querySelector<HTMLDivElement>('#search-results');
+
+  if (
+    !search ||
+    !searchButton ||
+    !searchPanel ||
+    !searchClose ||
+    !input ||
+    !results
+  ) {
+    throw new Error('Search: elementi non trovati');
+  }
+
+  let index: any[] = [];
+
+  async function loadIndex() {
+    const response = await fetch('/api/search-index.json');
+
+    if (!response.ok) {
+      throw new Error('Impossibile caricare l’indice di ricerca');
+    }
+
+    index = await response.json();
+  }
+
+  function levenshtein(a: string, b: string): number {
+    const matrix = Array.from(
+      { length: b.length + 1 },
+      (_, i) => [i]
+    );
+
+    for (let j = 0; j <= a.length; j++) {
+      matrix[0][j] = j;
+    }
+
+    for (let i = 1; i <= b.length; i++) {
+      for (let j = 1; j <= a.length; j++) {
+        if (b[i - 1] === a[j - 1]) {
+          matrix[i][j] = matrix[i - 1][j - 1];
+        } else {
+          matrix[i][j] = Math.min(
+            matrix[i - 1][j] + 1,
+            matrix[i][j - 1] + 1,
+            matrix[i - 1][j - 1] + 1
+          );
+        }
+      }
+    }
+
+    return matrix[b.length][a.length];
+  }
+
+  function searchItems(query: string) {
+  const normalizedQuery = query.trim().toLowerCase();
+
+  if (!normalizedQuery) {
+    results.innerHTML = '';
+    return;
+  }
+
+  const currentPath = window.location.pathname;
+
+  let currentSection:
+    | 'verb'
+    | 'vocabulary'
+    | 'grammar'
+    | null = null;
+
+  if (currentPath.startsWith('/verben/')) {
+    currentSection = 'verb';
+  } else if (currentPath.startsWith('/vokabeln/')) {
+    currentSection = 'vocabulary';
+  } else if (currentPath.startsWith('/grammatik/')) {
+    currentSection = 'grammar';
+  }
+
+  const matches = index
+    .map((item) => {
+      const title = item.title.toLowerCase();
+      const translation = (item.translation ?? '').toLowerCase();
+
+      let score = 0;
+
+      /* Titolo */
+      if (title === normalizedQuery) {
+        score += 100;
+      } else if (title.startsWith(normalizedQuery)) {
+        score += 80;
+      } else if (title.includes(normalizedQuery)) {
+        score += 50;
+      }
+
+      /* Traduzione */
+      if (translation === normalizedQuery) {
+        score += 70;
+      } else if (translation.startsWith(normalizedQuery)) {
+        score += 40;
+      } else if (translation.includes(normalizedQuery)) {
+        score += 20;
+      }
+
+      /* Altri termini indicizzati */
+      for (const term of item.terms) {
+        const normalizedTerm = term.toLowerCase();
+
+        if (normalizedTerm === normalizedQuery) {
+          score += 60;
+        } else if (normalizedTerm.startsWith(normalizedQuery)) {
+          score += 30;
+        } else if (normalizedTerm.includes(normalizedQuery)) {
+          score += 10;
+        }
+      }
+
+      /* Fuzzy matching */
+      let fuzzyScore = 0;
+
+      for (const term of item.terms) {
+        const normalizedTerm = term.toLowerCase();
+
+        if (
+          normalizedQuery.length < 3 ||
+          normalizedTerm.length < 3
+        ) {
+          continue;
+        }
+
+        const distance = levenshtein(
+          normalizedQuery,
+          normalizedTerm
+        );
+
+        const maxLength = Math.max(
+          normalizedQuery.length,
+          normalizedTerm.length
+        );
+
+        const similarity = 1 - distance / maxLength;
+
+        if (similarity >= 0.75) {
+          fuzzyScore = Math.max(
+            fuzzyScore,
+            Math.round(similarity * 20)
+          );
+        }
+      }
+
+      score += fuzzyScore;
+
+      /* Salviamo la rilevanza PRIMA del bonus */
+      const relevance = score;
+
+      /* Bonus per la sezione corrente */
+      if (relevance > 0 && item.kind === currentSection) {
+        score += 8;
+      }
+
+      return {
+        item,
+        score,
+        relevance,
+      };
+    })
+    /* Qui controlliamo la rilevanza vera, non il bonus */
+    .filter((result) => result.relevance > 0)
+    .sort((a, b) => b.score - a.score);
+
+  if (matches.length === 0) {
+    results.innerHTML = `
+      <div class="search-no-results">
+        Nessun risultato.
+      </div>
+    `;
+    return;
+  }
+
+  results.innerHTML = matches
+    .map(
+      ({ item }) => `
+        <a href="${item.url}" class="search-result">
+          <strong>${item.title}</strong>
+          <span>${item.translation ?? ''}</span>
+        </a>
+      `
+    )
+    .join('');
+}
+
+  function openSearch() {
+    searchPanel.hidden = false;
+    searchButton.setAttribute('aria-expanded', 'true');
+
+    requestAnimationFrame(() => {
+      input.focus();
+    });
+  }
+
+  function closeSearch() {
+    searchPanel.hidden = true;
+    searchButton.setAttribute('aria-expanded', 'false');
+
+    input.value = '';
+    results.innerHTML = '';
+  }
+
+  searchButton.addEventListener('click', () => {
+    if (searchPanel.hidden) {
+      openSearch();
+    } else {
+      closeSearch();
+    }
+  });
+  
+  document.addEventListener('click', (event) => {
+  const target = event.target as Node;
+
+  if (!search.contains(target) && !searchPanel.hidden) {
+    closeSearch();
+  }
+});
+
+  searchClose.addEventListener('click', closeSearch);
+
+  input.addEventListener('input', (event) => {
+  const target = event.currentTarget as HTMLInputElement;
+  searchItems(target.value);
+
+  target.focus();
+});
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !searchPanel.hidden) {
+      closeSearch();
+    }
+  });
+
+  loadIndex();
+</script>

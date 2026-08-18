@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import VerbListItem from '../../components/VerbListItem.astro';
+import FilterBar from '../../components/FilterBar.astro';
+
+const verben = await getCollection('verben');
+
+verben.sort((a, b) =>
+  a.data.lemma.localeCompare(b.data.lemma)
+);
+
+const filters = [
+  {
+    name: 'level',
+    label: 'Livello',
+    options: [
+      { value: 'A1', label: 'A1' },
+      { value: 'A2', label: 'A2' },
+      { value: 'B1', label: 'B1' },
+      { value: 'B2', label: 'B2' },
+      { value: 'C1', label: 'C1' },
+      { value: 'C2', label: 'C2' },
+    ],
+  },
+  {
+    name: 'type',
+    label: 'Tipo',
+    options: [
+      { value: 'regular', label: 'Regolari' },
+      { value: 'irregular', label: 'Irregolari' },
+      { value: 'modal', label: 'Modali' },
+      { value: 'mixed', label: 'Misti' },
+    ],
+  },
+];
+---
+
+<BaseLayout title="Verben">
+  <div class="list-page">
+    <header class="list-header">
+      <a class="back-link" href="/">← Deutsch</a>
+
+      <h1>Verben</h1>
+
+      <p>
+        Verbi tedeschi e loro forme.
+      </p>
+
+    </header>
+
+<FilterBar filters={filters} />
+
+<div class="verb-list">
+  {verben.map((verb) => (
+    <VerbListItem
+  slug={verb.id}
+  lemma={verb.data.lemma}
+  translation={verb.data.translation}
+  type={verb.data.type}
+  level={verb.data.level}
+  separable={verb.data.separable}
+  reflexive={verb.data.reflexive}
+/>
+  ))}
+</div>
+  </div>
+</BaseLayout>

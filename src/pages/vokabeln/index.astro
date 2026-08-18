@@ -1,0 +1,85 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import VocabularyListItem from '../../components/VocabularyListItem.astro';
+import FilterBar from '../../components/FilterBar.astro';
+
+const vokabeln = await getCollection('vokabeln');
+
+vokabeln.sort((a, b) =>
+  a.data.word.localeCompare(b.data.word)
+);
+const filters = [
+  {
+    name: 'level',
+    label: 'Livello',
+    options: [
+      { value: 'A1', label: 'A1' },
+      { value: 'A2', label: 'A2' },
+      { value: 'B1', label: 'B1' },
+      { value: 'B2', label: 'B2' },
+      { value: 'C1', label: 'C1' },
+      { value: 'C2', label: 'C2' },
+    ],
+  },
+  {
+    name: 'type',
+    label: 'Tipo',
+    options: [
+      { value: 'noun', label: 'Sostantivi' },
+      { value: 'verb', label: 'Verbi' },
+      { value: 'adjective', label: 'Aggettivi' },
+      { value: 'adverb', label: 'Avverbi' },
+      { value: 'preposition', label: 'Preposizioni' },
+      { value: 'conjunction', label: 'Congiunzioni' },
+      { value: 'pronoun', label: 'Pronomi' },
+      { value: 'other', label: 'Altro' },
+    ],
+  },
+  {
+    name: 'article',
+    label: 'Genere',
+    options: [
+      { value: 'der', label: 'Maschile' },
+      { value: 'die', label: 'Femminile' },
+      { value: 'das', label: 'Neutro' },
+    ],
+  },
+];
+---
+
+<BaseLayout title="Vokabeln">
+  <div class="list-page">
+    <header class="list-header">
+      <a class="back-link" href="/">← Deutsch</a>
+
+      <h1>Vokabeln</h1>
+
+      <p>
+        Parole e vocaboli tedeschi.
+      </p>
+
+      <p class="item-count">
+        {vokabeln.length}
+        {vokabeln.length === 1 ? ' Vokabel' : ' Vokabeln'}
+      </p>
+    </header>
+
+<FilterBar filters={filters} />
+
+    <div class="vocabulary-list">
+      {vokabeln.map((vocab) => (
+        <VocabularyListItem
+  slug={vocab.id}
+  word={vocab.data.word}
+  translation={vocab.data.translation}
+  article={vocab.data.article}
+  plural={vocab.data.plural}
+  category={vocab.data.category}
+  level={vocab.data.level}
+  type={vocab.data.type}
+/>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
