@@ -12,7 +12,7 @@ export async function getSearchIndex() {
       kind: 'verb' as const,
       title: verb.data.lemma,
       translation: verb.data.translation,
-      url: `${import.meta.env.BASE_URL}verben/${verb.id}/`,
+      url: `/verben/${verb.id}/`,
       level: verb.data.level ?? null,
 
       terms: [
@@ -30,7 +30,7 @@ export async function getSearchIndex() {
         ? `${vocab.data.article} ${vocab.data.word}`
         : vocab.data.word,
       translation: vocab.data.translation,
-      url: `${import.meta.env.BASE_URL}vokabeln/${verb.id}/`,
+      url: `/vokabeln/${vocab.id}/`,
       level: vocab.data.level ?? null,
 
       terms: [
@@ -45,7 +45,7 @@ export async function getSearchIndex() {
       kind: 'grammar' as const,
       title: grammar.data.title,
       translation: null,
-      url: `${import.meta.env.BASE_URL}grammatik/${verb.id}/`,
+      url: `/grammatik/${grammar.id}/`,
       level: grammar.data.level ?? null,
 
       terms: [
