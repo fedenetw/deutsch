@@ -1,5 +1,11 @@
 import { getCollection } from 'astro:content';
 
+const BASE_URL = import.meta.env.BASE_URL;
+
+function withBase(path: string) {
+  return `${BASE_URL}${path.replace(/^\/+/, '')}`;
+}
+
 export async function getSearchIndex() {
   const [verben, vokabeln, grammatik] = await Promise.all([
     getCollection('verben'),
@@ -12,7 +18,7 @@ export async function getSearchIndex() {
       kind: 'verb' as const,
       title: verb.data.lemma,
       translation: verb.data.translation,
-      url: `/verben/${verb.id}/`,
+      url: withBase(`/verben/${verb.id}/`),
       level: verb.data.level ?? null,
 
       terms: [
@@ -30,7 +36,7 @@ export async function getSearchIndex() {
         ? `${vocab.data.article} ${vocab.data.word}`
         : vocab.data.word,
       translation: vocab.data.translation,
-      url: `/vokabeln/${vocab.id}/`,
+      url: withBase(`/vokabeln/${vocab.id}/`),
       level: vocab.data.level ?? null,
 
       terms: [
@@ -45,7 +51,7 @@ export async function getSearchIndex() {
       kind: 'grammar' as const,
       title: grammar.data.title,
       translation: null,
-      url: `/grammatik/${grammar.id}/`,
+      url: withBase(`/grammatik/${grammar.id}/`),
       level: grammar.data.level ?? null,
 
       terms: [
