@@ -288,6 +288,19 @@ p {
 .content th { font-weight: 600; background: var(--color-surface); }
 .content tr:last-child td { border-bottom: none; }
 
+.content {
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.content table {
+  width: 100%;
+  min-width: 480px;
+  border-collapse: collapse;
+}
+
 /* =========================================
    8. FILTRI
    ========================================= */
