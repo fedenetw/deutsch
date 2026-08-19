@@ -1,7 +1,7 @@
 ---
 lemma: wollen
 translation: volere
-type: irregular
+type: modal
 auxiliary: haben
 participle: gewollt
 preterite: wollte

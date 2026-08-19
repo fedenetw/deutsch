@@ -1,7 +1,7 @@
 ---
 lemma: sollen
 translation: dovere/dovrebbe
-type: irregular
+type: modal
 auxiliary: haben
 participle: gesollt
 preterite: sollte

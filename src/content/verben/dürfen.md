@@ -1,7 +1,7 @@
 ---
 lemma: dürfen
 translation: poter fare
-type: irregular
+type: modal
 auxiliary: haben
 participle: gedurft
 preterite: durfte

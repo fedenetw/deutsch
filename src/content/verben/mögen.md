@@ -1,7 +1,7 @@
 ---
 lemma: mögen
 translation: piacere
-type: irregular
+type: modal
 auxiliary: haben
 participle: gemocht
 preterite: mochte

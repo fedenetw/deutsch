@@ -1,7 +1,7 @@
 ---
 lemma: können
 translation: potere
-type: irregular
+type: modal
 auxiliary: haben
 participle: gekonnt
 preterite: konnte

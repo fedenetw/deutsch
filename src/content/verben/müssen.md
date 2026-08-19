@@ -1,7 +1,7 @@
 ---
 lemma: müssen
 translation: müssen
-type: irregular
+type: modal
 auxiliary: haben
 participle: gemusst
 preterite: musste
