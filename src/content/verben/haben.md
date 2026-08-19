@@ -29,8 +29,8 @@ Avere.
 
 > Ich habe heute Zeit.
 
-Ho tempo oggi.
+Oggi ho tempo.
 
-> Ich habe gestern gelesen.
+> Ich habe drei Mathe Stunden gehabt.
 
-Ho letto ieri.
+Ho avuto tre ore di matematica.

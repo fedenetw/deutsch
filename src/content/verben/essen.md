@@ -4,7 +4,7 @@ translation: mangiare
 type: irregular
 auxiliary: haben
 participle: gegessen
-preterite: ass
+preterite: aß
 separable: false
 reflexive: false
 level: A1
@@ -14,12 +14,12 @@ level: A1
 
 | Person | Präsens | Präteritum |
 |---|---|---|
-| ich | esse | ass |
-| du | isst | assest |
-| er/sie/es | isst | ass |
-| wir | essen | assen |
+| ich | esse | aß |
+| du | isst | aßest |
+| er/sie/es | isst | aß |
+| wir | essen | aßen |
 | ihr | esst | esst |
-| sie/Sie | essen | assen |
+| sie/Sie | essen | aßen |
 
 ## Bedeutung
 

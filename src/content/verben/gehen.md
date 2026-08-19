@@ -33,4 +33,4 @@ Vado a scuola.
 
 > Ich bin gestern nach Hause gegangen.
 
-Sono andato ieri a casa.
+Ieri sono andato a casa.

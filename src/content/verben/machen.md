@@ -31,6 +31,6 @@ Fare.
 
 Faccio i compiti tutti i giorni.
 
-> Ich habe gestern das Essen gemacht.
+> Ich habe gestern das Abendessen gemacht.
 
-Ho lavorato molto ieri.
+Ieri ho preparato la cena.
