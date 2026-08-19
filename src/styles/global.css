@@ -306,7 +306,7 @@ p {
    ========================================= */
 .filter-bar {
   display: flex;
-  align-items: end;
+  align-items: center;
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
@@ -318,7 +318,10 @@ p {
   gap: 0.5rem;
 }
 
-.filter-bar label span { color: var(--color-muted); font-size: 0.9rem; }
+.filter-bar label span {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
 
 .filter-bar select {
   padding: 0.45rem 0.7rem;
@@ -337,14 +340,24 @@ p {
   background: transparent;
   color: var(--color-muted);
   font-size: 1.2rem;
-  line-height: 1;
+  line-height: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   cursor: pointer;
+}
+
+.filter-reset span {
+  transform: translateY(-1px);
 }
 
 .filter-reset:hover {
   color: inherit;
   border-color: currentColor;
 }
+
 
 /* =========================================
    9. RICERCA (SEARCH)
@@ -442,9 +455,18 @@ p {
   font-size: 1.35rem;
   cursor: pointer;
   opacity: 0.55;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+
+  transform: translateY(-1.5px);
 }
 
-.search-close:hover { opacity: 1; }
+.search-close:hover {
+  opacity: 1;
+}
 
 .search-results {
   position: relative;
@@ -521,4 +543,42 @@ p {
   .filter-bar label { justify-content: space-between; }
   .filter-bar select { flex: 1; }
   .filter-reset { align-self: flex-start; }
+  .filter {
+    display: flex;
+    align-items: center;
+  }
+
+  .filter label {
+    width: 5rem;
+    flex-shrink: 0;
+  }
+
+  .filter select {
+    flex: 1;
+  }
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.6rem;
+  }
+
+  .filter-bar label {
+    display: grid;
+    grid-template-columns: 5rem minmax(0, 1fr);
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .filter-bar label span {
+    width: 5rem;
+  }
+
+  .filter-bar select {
+    width: 100%;
+  }
+
+  .filter-reset {
+    align-self: flex-start;
+    margin-top: 0.1rem;
+  }
 }
