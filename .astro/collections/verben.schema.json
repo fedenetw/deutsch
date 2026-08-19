@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "lemma": {
+      "type": "string"
+    },
+    "translation": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "regular",
+        "irregular",
+        "modal",
+        "mixed"
+      ]
+    },
+    "auxiliary": {
+      "type": "string",
+      "enum": [
+        "haben",
+        "sein"
+      ]
+    },
+    "participle": {
+      "type": "string"
+    },
+    "preterite": {
+      "type": "string"
+    },
+    "separable": {
+      "default": false,
+      "type": "boolean"
+    },
+    "base": {
+      "type": "string"
+    },
+    "reflexive": {
+      "default": false,
+      "type": "boolean"
+    },
+    "level": {
+      "type": "string",
+      "enum": [
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1",
+        "C2"
+      ]
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "lemma",
+    "translation",
+    "type"
+  ]
+}

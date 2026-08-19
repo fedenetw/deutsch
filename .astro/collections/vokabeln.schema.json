@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "word": {
+      "type": "string"
+    },
+    "translation": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "noun",
+        "verb",
+        "adjective",
+        "adverb",
+        "preposition",
+        "conjunction",
+        "pronoun",
+        "other"
+      ]
+    },
+    "article": {
+      "type": "string",
+      "enum": [
+        "der",
+        "die",
+        "das"
+      ]
+    },
+    "plural": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "level": {
+      "type": "string",
+      "enum": [
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1",
+        "C2"
+      ]
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "word",
+    "translation",
+    "type"
+  ]
+}
