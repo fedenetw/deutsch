@@ -59,6 +59,17 @@ const grammatik = defineCollection({
     category: z.string(),
     level: z.enum(['A1', 'A2', 'B1', 'B2', 'C1', 'C2']).optional(),
     order: z.number().default(0),
+
+    summary: z.object({
+      question: z.string().optional(),
+      function: z.string().optional(),
+      changes: z.array(
+        z.object({
+          from: z.string(),
+          to: z.string(),
+        })
+      ).default([]),
+    }).optional(),
   }),
 });
 

@@ -23,6 +23,36 @@
       "default": 0,
       "type": "number"
     },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "question": {
+          "type": "string"
+        },
+        "function": {
+          "type": "string"
+        },
+        "changes": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "string"
+              },
+              "to": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "from",
+              "to"
+            ]
+          }
+        }
+      }
+    },
     "$schema": {
       "type": "string"
     }

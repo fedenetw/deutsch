@@ -2,7 +2,15 @@
 title: Der Akkusativ
 category: Fälle
 level: A1
-order: 20
+order: 1
+summary:
+  question: "wen? / was?"
+  function: "Direktes Objekt"
+  changes:
+    - from: "der"
+      to: "den"
+    - from: "ein"
+      to: "einen"
 ---
 
 L'accusativo viene spesso utilizzato per il **complemento oggetto diretto**.

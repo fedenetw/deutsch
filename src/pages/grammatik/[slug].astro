@@ -35,14 +35,13 @@ const { Content } = await render(grammar);
         </p>
       )}
     </header>
-    <GrammarSummary
-  question="wen? / was?"
-  function="Direktes Objekt"
-  changes={[
-    { from: 'der', to: 'den' },
-    { from: 'ein', to: 'einen' },
-  ]}
-/>
+    {grammar.data.summary && (
+  <GrammarSummary
+    question={grammar.data.summary.question}
+    function={grammar.data.summary.function}
+    changes={grammar.data.summary.changes}
+  />
+)}
 
     <div class="content">
       <Content />
