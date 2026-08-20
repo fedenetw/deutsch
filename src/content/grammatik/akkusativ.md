@@ -5,8 +5,7 @@ level: A1
 order: 20
 ---
 
-
-L'accusativo viene spesso utilizzato per il complemento oggetto diretto.
+L'accusativo viene spesso utilizzato per il **complemento oggetto diretto**.
 
 Il complemento oggetto diretto risponde solitamente alle domande **wen? (chi?)** o **was? (cosa?)**
 
@@ -25,9 +24,9 @@ Il complemento oggetto diretto risponde solitamente alle domande **wen? (chi?)**
 |           | Maskulin | Feminin | Neutrum | Plural |
 | --------- | -------- | ------- | ------- | ------ |
 | Nominativ | der      | die     | das     | die    |
-| Akkusativ | **den**      | die     | das     | die    |
+| Akkusativ | **den**  | die     | das     | die    |
 
-All'accusativo, quindi, cambia solo l'articolo determinativo al **maschile**:
+All'accusativo cambia quindi solo l'articolo determinativo al **maschile singolare**:
 
 > der Mann → Ich sehe **den Mann**.
 
@@ -39,7 +38,7 @@ All'accusativo, quindi, cambia solo l'articolo determinativo al **maschile**:
 
 ## Unbestimmter Artikel
 
-Anche nell'articolo indeterminativo cambia solo la forma maschile.
+Anche con l'articolo indeterminativo cambia solo la forma maschile singolare.
 
 > ein Mann → Ich sehe **einen Mann**.
 
@@ -59,15 +58,15 @@ Anche i pronomi personali hanno forme specifiche all'accusativo.
 
 | Nominativ | Akkusativ |
 | --------- | --------- |
-| ich       | mich      |
-| du        | dich      |
-| er        | ihn       |
-| sie       | sie       |
-| es        | es        |
-| wir       | uns       |
-| ihr       | euch      |
-| sie       | sie       |
-| Sie       | Sie       |
+| ich        | mich       |
+| du         | dich       |
+| er         | ihn        |
+| sie        | sie        |
+| es         | es         |
+| wir        | uns        |
+| ihr        | euch       |
+| sie        | sie        |
+| Sie        | Sie        |
 
 ### Beispiele
 
@@ -88,11 +87,13 @@ L'accusativo indica spesso la persona o la cosa verso cui è diretta l'azione.
 > **Der Mann** sieht **den Hund**.
 
 **Wer** sieht den Hund? → Der Mann.
+
 **Wen** sieht der Mann? → Den Hund.
 
 > **Die Frau** kauft **einen Kaffee**.
 
 **Wer** kauft einen Kaffee? → Die Frau.
+
 **Was** kauft die Frau? → Einen Kaffee.
 
 ## Merksatz

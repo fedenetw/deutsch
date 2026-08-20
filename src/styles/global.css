@@ -509,7 +509,51 @@ p {
 }
 
 /* =========================================
-   10. RESPONSIVE (MOBILE)
+   10. GRAMMAR SUMMARY
+   ========================================= */
+
+.grammar-summary {
+  margin: 1.5rem 0 2rem;
+  padding: 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+}
+
+.grammar-summary-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+}
+
+.grammar-summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.grammar-summary-label {
+  color: var(--color-muted);
+  font-size: 0.8rem;
+}
+
+.grammar-summary-item strong {
+  font-weight: 600;
+}
+
+.grammar-summary-changes {
+  flex: 1;
+}
+
+.grammar-summary-change-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+
+/* =========================================
+   11. RESPONSIVE (MOBILE)
    ========================================= */
 @media (max-width: 600px) {
   .site-nav {
@@ -566,5 +610,9 @@ p {
   .filter-reset {
     align-self: flex-start;
     margin-top: 0.1rem;
+  }
+  .grammar-summary-grid {
+    flex-direction: column;
+    gap: 0.8rem;
   }
 }

@@ -1,0 +1,46 @@
+---
+interface Props {
+  question?: string;
+  function?: string;
+  changes?: {
+    from: string;
+    to: string;
+  }[];
+}
+
+const { question, function: functionText, changes = [] } = Astro.props;
+---
+
+<section class="grammar-summary" aria-label="In sintesi">
+  <div class="grammar-summary-grid">
+
+    {question && (
+      <div class="grammar-summary-item">
+        <span class="grammar-summary-label">Frage</span>
+        <strong>{question}</strong>
+      </div>
+    )}
+
+    {functionText && (
+      <div class="grammar-summary-item">
+        <span class="grammar-summary-label">Funktion</span>
+        <strong>{functionText}</strong>
+      </div>
+    )}
+
+    {changes.length > 0 && (
+      <div class="grammar-summary-item grammar-summary-changes">
+        <span class="grammar-summary-label">Wichtige Änderung</span>
+
+        <div class="grammar-summary-change-list">
+          {changes.map((change) => (
+            <span class="grammar-summary-change">
+              {change.from} → <strong>{change.to}</strong>
+            </span>
+          ))}
+        </div>
+      </div>
+    )}
+
+  </div>
+</section>

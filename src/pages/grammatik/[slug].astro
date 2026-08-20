@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import GrammarSummary from '../../components/GrammarSummary.astro';
 
 export async function getStaticPaths() {
   const grammatik = await getCollection('grammatik');
@@ -34,6 +35,14 @@ const { Content } = await render(grammar);
         </p>
       )}
     </header>
+    <GrammarSummary
+  question="wen? / was?"
+  function="Direktes Objekt"
+  changes={[
+    { from: 'der', to: 'den' },
+    { from: 'ein', to: 'einen' },
+  ]}
+/>
 
     <div class="content">
       <Content />
