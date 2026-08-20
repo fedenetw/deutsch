@@ -233,12 +233,18 @@ p {
 
 .back-link {
   display: inline-block;
-  margin-bottom: 2rem;
+  margin: 0 0 2rem 0;
   color: var(--color-muted);
 }
 
-.verb-header, .vocabulary-header { margin-bottom: 2rem; }
-.verb-header h1, .vocabulary-header h1 { margin: 0; font-size: 3rem; }
+.verb-header, .vocabulary-header, .grammar-header {
+  margin: 0 0 2rem 0;
+}
+
+.verb-header h1, .vocabulary-header h1, .grammar-header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 3rem;
+}
 
 .translation {
   margin: 0.5rem 0 0;
@@ -246,8 +252,6 @@ p {
   font-size: 1.25rem;
 }
 
-.grammar-header { margin-bottom: 2.5rem; }
-.grammar-header h1 { margin-bottom: 0.5rem; }
 .grammar-level { margin: 0; color: var(--color-muted); font-weight: 600; }
 
 .list-page {
@@ -255,14 +259,28 @@ p {
   margin-inline: auto;
 }
 
-.list-header { margin-bottom: 2rem; }
-.list-header h1 { margin-bottom: 0.5rem; }
+.list-header { 
+  margin: 0 0 2rem 0;
+}
+
+.list-header h1 { 
+  margin: 0 0 0.5rem 0;
+  font-size: 3rem;
+}
+
 .item-count { color: var(--color-muted); font-size: 0.9rem; }
 
 /* =========================================
    7. CONTENUTO & TABELLE
    ========================================= */
-.content { font-size: 1.05rem; }
+.content {
+  font-size: 1.05rem;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .content h2 { margin-block: 2.5rem 1rem; }
 
 .content blockquote {
@@ -274,6 +292,7 @@ p {
 
 .content table {
   width: 100%;
+  min-width: 480px;
   border-collapse: collapse;
   margin-block: 1.5rem;
   font-size: 1rem;
@@ -287,19 +306,6 @@ p {
 
 .content th { font-weight: 600; background: var(--color-surface); }
 .content tr:last-child td { border-bottom: none; }
-
-.content {
-  max-width: 100%;
-  min-width: 0;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.content table {
-  width: 100%;
-  min-width: 480px;
-  border-collapse: collapse;
-}
 
 /* =========================================
    8. FILTRI
@@ -357,7 +363,6 @@ p {
   color: inherit;
   border-color: currentColor;
 }
-
 
 /* =========================================
    9. RICERCA (SEARCH)
@@ -538,27 +543,6 @@ p {
   .filter-bar {
     align-items: stretch;
     flex-direction: column;
-  }
-
-  .filter-bar label { justify-content: space-between; }
-  .filter-bar select { flex: 1; }
-  .filter-reset { align-self: flex-start; }
-  .filter {
-    display: flex;
-    align-items: center;
-  }
-
-  .filter label {
-    width: 5rem;
-    flex-shrink: 0;
-  }
-
-  .filter select {
-    flex: 1;
-  }
-  .filter-bar {
-    flex-direction: column;
-    align-items: stretch;
     gap: 0.6rem;
   }
 
@@ -567,6 +551,7 @@ p {
     grid-template-columns: 5rem minmax(0, 1fr);
     align-items: center;
     gap: 0.5rem;
+    justify-content: space-between;
   }
 
   .filter-bar label span {
@@ -574,6 +559,7 @@ p {
   }
 
   .filter-bar select {
+    flex: 1;
     width: 100%;
   }
 
